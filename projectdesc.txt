@@ -1,0 +1,14 @@
+
+   Able to add the product and their category
+   Able to display all the product
+   Able to display details of product
+   as user able to add the product to card
+   As user able to buy the product 
+   Able to see the list of order
+   Able to see the list of item in cart
+   Able to see invoice download
+   Able to add the money to wallet
+   Able to register as user 
+   Able to login as user
+   Able to register as seller 
+   Able to get the product by price
