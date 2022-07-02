@@ -10,28 +10,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ecommerce.entity.Buyer;
-import com.ecommerce.repo.BuyerRepo;
+import com.ecommerce.entity.Wallet;
+import com.ecommerce.repo.WalletRepo;
 
 @RestController
-@RequestMapping("/buyer")
-public class Buyer_control {
-	@Autowired
-	BuyerRepo buyrepo;
+@RequestMapping("/wallet")
+public class Wallet_control {
 
-	@PostMapping("/add")
-	public List<Buyer> adddata(@RequestBody Buyer ab){
-		buyrepo.save(ab);
-		return buyrepo.findAll();
-		}
-	@PutMapping("/update")
-	public List<Buyer> updatedata(@RequestBody Buyer ab){
-		buyrepo.save(ab);
-		return buyrepo.findAll();
-		}
+	@Autowired
+	WalletRepo wr;
+	
 	@GetMapping("/")
-	public List<Buyer> showdata(){
-		return buyrepo.findAll();
-		
+	public List<Wallet> show(){
+		return wr.findAll();
+	}
+	
+	@PostMapping("/add")
+	public List<Wallet> add(@RequestBody Wallet ab){
+		wr.save(ab);
+		return wr.findAll();
+	}
+	
+	@PutMapping("/update")
+	public List<Wallet> update(@RequestBody Wallet ab){
+		wr.save(ab);
+		return wr.findAll();
 	}
 }
