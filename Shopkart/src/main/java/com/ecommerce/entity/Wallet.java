@@ -14,20 +14,11 @@ public class Wallet {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int balance;
 	
-	@OneToOne
-	Buyer buyers;
+	private double balance;
 	
 	public Wallet() {
 		
-	}
-
-	public Wallet(int id, int balance, Buyer buyers) {
-		super();
-		this.id = id;
-		this.balance = balance;
-		this.buyers = buyers;
 	}
 
 	public int getId() {
@@ -38,28 +29,26 @@ public class Wallet {
 		this.id = id;
 	}
 
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	public Buyer getBuyers() {
-		return buyers;
-	}
-
-	public void setBuyers(Buyer buyers) {
-		this.buyers = buyers;
 	}
 
 	@Override
 	public String toString() {
-		return "Wallet [id=" + id + ", balance=" + balance + ", buyers=" + buyers + "]";
+		return "Wallet [id=" + id + ", balance=" + balance + "]";
+	}
+
+	public Wallet(int id, double balance) {
+		super();
+		this.id = id;
+		this.balance = balance;
 	}
 
 	
-	
+
 	
 }

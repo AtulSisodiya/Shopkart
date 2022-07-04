@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -25,7 +26,8 @@ public class Buyer {
 	private String username;
 	private String password;
 	private String mobileNo;
-	private Double wallet;
+	@OneToOne
+	Wallet wallet;
 	
 	@OneToMany(mappedBy = "buyerDetail")
 	private List<PlaceOrder> placeorder;
@@ -77,11 +79,11 @@ public class Buyer {
 		this.mobileNo = mobileNo;
 	}
 
-	public Double getWallet() {
+	public Wallet getWallet() {
 		return wallet;
 	}
 
-	public void setWallet(Double wallet) {
+	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
 	@JsonManagedReference
@@ -92,7 +94,7 @@ public class Buyer {
 	public void setPlaceorder(List<PlaceOrder> placeorder) {
 		this.placeorder = placeorder;
 	}
-	@JsonManagedReference
+@JsonManagedReference
 	public List<Cart> getCart() {
 		return cart;
 	}
@@ -101,7 +103,14 @@ public class Buyer {
 		this.cart = cart;
 	}
 
-	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Double wallet,
+	@Override
+	public String toString() {
+		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", username=" + username + ", password="
+				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + ", cart="
+				+ cart + "]";
+	}
+
+	public Buyer(Long buyerId, String buyerName, String username, String password, String mobileNo, Wallet wallet,
 			List<PlaceOrder> placeorder, List<Cart> cart) {
 		super();
 		this.buyerId = buyerId;
@@ -114,13 +123,5 @@ public class Buyer {
 		this.cart = cart;
 	}
 
-	@Override
-	public String toString() {
-		return "Buyer [buyerId=" + buyerId + ", buyerName=" + buyerName + ", username=" + username + ", password="
-				+ password + ", mobileNo=" + mobileNo + ", wallet=" + wallet + ", placeorder=" + placeorder + ", cart="
-				+ cart + "]";
-	}
-
-	
 	
 }
