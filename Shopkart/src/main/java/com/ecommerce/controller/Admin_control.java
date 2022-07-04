@@ -1,5 +1,7 @@
 package com.ecommerce.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.entity.Product;
 import com.ecommerce.service.AdminService;
 
 @RestController
@@ -44,6 +47,7 @@ AdminService adservice;
 	public ResponseEntity<String> loginseller(@RequestParam String username ,@RequestParam String password ) {
 		return adservice.loginseller(username,password);
 	}
+	
 	
 	
 
