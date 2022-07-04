@@ -8,16 +8,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.entity.Buyer;
+import com.ecommerce.entity.Product;
 import com.ecommerce.repo.BuyerRepo;
+import com.ecommerce.repo.ProductRepo;
 
 @RestController
 @RequestMapping("/buyer")
 public class Buyer_control {
 	@Autowired
 	BuyerRepo buyrepo;
+	
+	@Autowired
+	ProductRepo pr;
 
 	@PostMapping("/add")
 	public List<Buyer> adddata(@RequestBody Buyer ab){
@@ -34,4 +40,15 @@ public class Buyer_control {
 		return buyrepo.findAll();
 		
 	}
+	
+	
+	//product search
+	@GetMapping("/product/search")
+	public List<Product> search(@RequestParam String Keyword){
+		
+		 List<Product> listsearch=pr.search(Keyword);
+		 
+		 return listsearch;
+	}
+	
 }

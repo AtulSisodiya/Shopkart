@@ -28,6 +28,7 @@ public class Product {
 	public Product() {
 		
 	}
+	
 
 
 	public Long getProductId() {
@@ -130,6 +131,7 @@ public class Product {
 		this.sellerId = sellerId;
 		this.category = category;
 	}
+	
 	
 
 	

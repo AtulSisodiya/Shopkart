@@ -38,7 +38,7 @@ public class AdminService {
 	
 	@Autowired
 	CartRepo cartrepo;
-
+//---------------------login admin------------------
 	public ResponseEntity<String> loginAdmin(String username, String password) {
 		if (username.equals(null) || username.equals("")) {
 			return new ResponseEntity<String>("Enter Username.... ",HttpStatus.BAD_REQUEST);
@@ -54,7 +54,7 @@ public class AdminService {
 		}
 	}
 	
-	
+	//------------------------buyer login----------------------
 	public ResponseEntity<String> loginbuyer(String username, String password) {
 		if (username.equals(null) || username.equals("")) {
 			return new ResponseEntity<String>("Enter Username.... ",HttpStatus.BAD_REQUEST);
@@ -70,7 +70,7 @@ public class AdminService {
 		}
 	}
 	
-	
+	//---------------------login seller---------------------------
 	public ResponseEntity<String> loginseller(String username, String password) {
 		if (username.equals(null) || username.equals("")) {
 			return new ResponseEntity<String>("Enter Username.... ",HttpStatus.BAD_REQUEST);
@@ -85,14 +85,14 @@ public class AdminService {
 			return new ResponseEntity<String>("Login Failed..Retry Again with Valid Credentials",HttpStatus.BAD_REQUEST);
 		}
 	}
-
+//-------------------Seller approve-----------------------
 	public ResponseEntity<String> sellerApproval(Long sellerId) {
 		Seller entity = sellerrepo.findById(sellerId).get();
 		entity.setIsApproved("Yes");
 		sellerrepo.save(entity);
 		return new ResponseEntity("Seller Approved", HttpStatus.OK);
 		}
-	
+	//---------------Order approve------------------
 	public ResponseEntity<String> orderApproval(Long placeOrderId) {
 		PlaceOrder order = placeorderrepo.findById(placeOrderId).get();
 		order.setOrderStatus("Order Placed");
@@ -100,7 +100,7 @@ public class AdminService {
 		return new ResponseEntity("Your Order succesfully place", HttpStatus.OK);
 		}
 	
-	
+	//---------------delete product in the cart------------------
 	public List<Cart> deldata(long cartId, long productId){
 		Cart c = cartrepo.findById(cartId);
 		Product p = productrepo.findById(productId);
@@ -110,5 +110,8 @@ public class AdminService {
 
 		return cartrepo.findAll();
 	}
+	
+	
+
 	
 }
