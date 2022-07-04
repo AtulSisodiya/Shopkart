@@ -1,5 +1,7 @@
 package com.ecommerce.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,10 +9,13 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.entity.Admin;
 import com.ecommerce.entity.Buyer;
+import com.ecommerce.entity.Cart;
 import com.ecommerce.entity.PlaceOrder;
+import com.ecommerce.entity.Product;
 import com.ecommerce.entity.Seller;
 import com.ecommerce.repo.AdminRepo;
 import com.ecommerce.repo.BuyerRepo;
+import com.ecommerce.repo.CartRepo;
 import com.ecommerce.repo.PlaceOrderRepo;
 import com.ecommerce.repo.ProductRepo;
 import com.ecommerce.repo.SellerRepo;
@@ -30,6 +35,9 @@ public class AdminService {
 	
 	@Autowired
 	PlaceOrderRepo placeorderrepo;
+	
+	@Autowired
+	CartRepo cartrepo;
 
 	public ResponseEntity<String> loginAdmin(String username, String password) {
 		if (username.equals(null) || username.equals("")) {
@@ -92,5 +100,15 @@ public class AdminService {
 		return new ResponseEntity("Your Order succesfully place", HttpStatus.OK);
 		}
 	
+	
+	public List<Cart> deldata(long cartId, long productId){
+		Cart c = cartrepo.findById(cartId);
+		Product p = productrepo.findById(productId);
+		List<Product> temp= c.getProduct();
+		temp.remove(p);
+		cartrepo.save(c);
+
+		return cartrepo.findAll();
+	}
 	
 }

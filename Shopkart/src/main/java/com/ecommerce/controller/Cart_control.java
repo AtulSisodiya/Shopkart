@@ -15,12 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.entity.Cart;
 import com.ecommerce.repo.CartRepo;
+import com.ecommerce.service.AdminService;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @RestController
 @RequestMapping("/cart")
 public class Cart_control {
 	@Autowired
 	CartRepo cartrepo;
+	
+	@Autowired
+	AdminService as;
+	
 	@PostMapping("/add")
 	public List<Cart> adddata(@RequestBody Cart ab){
 		cartrepo.save(ab);
@@ -39,15 +45,11 @@ public class Cart_control {
 		return cartrepo.findAll();
 		}
 	
-	@DeleteMapping("{id}/delete/{id_product}")
-	public List<Cart> removeFromCart(@PathVariable Long id,Long id_product){
-		List<Cart> carts = cartrepo.save(null);
-		System.out.println(carts);
-		
-
-		return null;
-		
+	@DeleteMapping("/delete/")
+	public List<Cart> deletepid(@RequestBody JsonNode rb){
+		return as.deldata( rb.get("cartId").asLong(), rb.get("productId").asLong());
+	}
 		
 		
 	}
-}
+

@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.ecommerce.entity.Product;
 @Repository
 public interface ProductRepo extends JpaRepository<Product,Long>{
+	
+	Product findById(long productId);
 
 }
