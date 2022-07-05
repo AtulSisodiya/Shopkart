@@ -8,17 +8,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="wallet")
+@Table(name = "wallet")
 public class Wallet {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	private double balance;
-	
+
 	public Wallet() {
-		
+
 	}
 
 	public int getId() {
@@ -48,7 +48,4 @@ public class Wallet {
 		this.balance = balance;
 	}
 
-	
-
-	
 }

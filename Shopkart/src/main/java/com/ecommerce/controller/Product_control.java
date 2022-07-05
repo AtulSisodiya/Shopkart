@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.ecommerce.entity.Product;
 import com.ecommerce.repo.ProductRepo;
 
@@ -24,27 +23,26 @@ public class Product_control {
 	ProductRepo prorepo;
 
 	@PostMapping("/add")
-	public List<Product> adddata(@RequestBody Product ab){
+	public List<Product> adddata(@RequestBody Product ab) {
 		prorepo.save(ab);
 		return prorepo.findAll();
-		}
-	
+	}
+
 	@PutMapping("/update")
-	public List<Product> updatedata(@RequestBody Product ab){
+	public List<Product> updatedata(@RequestBody Product ab) {
 		prorepo.save(ab);
 		return prorepo.findAll();
-		}
+	}
+
 	@GetMapping("/")
-	public List<Product> showdata(){
+	public List<Product> showdata() {
 		return prorepo.findAll();
-		}
-	
+	}
+
 	@DeleteMapping("/{id}")
-	public List<Product> deldata(@PathVariable Long id){
+	public List<Product> deldata(@PathVariable Long id) {
 		prorepo.deleteById(id);
 		return prorepo.findAll();
 	}
-		
+
 }
-
-

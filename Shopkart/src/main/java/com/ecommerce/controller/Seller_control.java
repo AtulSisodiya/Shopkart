@@ -15,21 +15,19 @@ import com.ecommerce.repo.SellerRepo;
 @RestController
 @RequestMapping("/seller")
 public class Seller_control {
-@Autowired
-SellerRepo sellrepo;
+	@Autowired
+	SellerRepo sellrepo;
 
-@PostMapping("/add")
-public List<Seller> adddata(@RequestBody Seller ab){
-	sellrepo.save(ab);
-	return sellrepo.findAll();
+	@PostMapping("/add")
+	public List<Seller> adddata(@RequestBody Seller ab) {
+		sellrepo.save(ab);
+		return sellrepo.findAll();
 	}
 
-@GetMapping("/")
-public List<Seller> showdata(){
-	return sellrepo.findAll();
-	
-}
+	@GetMapping("/")
+	public List<Seller> showdata() {
+		return sellrepo.findAll();
 
-
+	}
 
 }

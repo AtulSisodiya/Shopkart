@@ -8,8 +8,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,81 +21,65 @@ public class Product {
 	private String description;
 	private String productPrice;
 	private Long sellerId;
-	
-    @ManyToOne
-	Category category;
-	
-	
-	public Product() {
-		
-	}
-	
 
+	@ManyToOne
+	Category category;
+
+	public Product() {
+
+	}
 
 	public Long getProductId() {
 		return productId;
 	}
 
-
 	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
-
 
 	public String getProductName() {
 		return productName;
 	}
 
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 
 	public String getBrand() {
 		return brand;
 	}
 
-
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public String getProductPrice() {
 		return productPrice;
 	}
 
-
 	public void setProductPrice(String productPrice) {
 		this.productPrice = productPrice;
 	}
 
-
 	public Long getSellerId() {
 		return sellerId;
 	}
-
 
 	public void setSellerId(Long sellerId) {
 		this.sellerId = sellerId;
@@ -105,11 +90,9 @@ public class Product {
 		return category;
 	}
 
-
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
 
 	@Override
 	public String toString() {
@@ -117,7 +100,6 @@ public class Product {
 				+ quantity + ", description=" + description + ", productPrice=" + productPrice + ", sellerId="
 				+ sellerId + ", category=" + category + "]";
 	}
-
 
 	public Product(Long productId, String productName, String brand, int quantity, String description,
 			String productPrice, Long sellerId, Category category) {
@@ -131,11 +113,5 @@ public class Product {
 		this.sellerId = sellerId;
 		this.category = category;
 	}
-	
-	
 
-	
-
-	
-	
 }

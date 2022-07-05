@@ -13,30 +13,28 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
-
 @Entity
-@Table(name="register_buyer")
+@Table(name = "register_buyer")
 public class Buyer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long buyerId;
-	
+
 	private String buyerName;
 	private String username;
 	private String password;
 	private String mobileNo;
 	@OneToOne
 	Wallet wallet;
-	
+
 	@OneToMany(mappedBy = "buyerDetail")
 	private List<PlaceOrder> placeorder;
-	
+
 	@OneToMany(mappedBy = "buyer")
 	private List<Cart> cart;
-	
+
 	public Buyer() {
-		
+
 	}
 
 	public Long getBuyerId() {
@@ -86,6 +84,7 @@ public class Buyer {
 	public void setWallet(Wallet wallet) {
 		this.wallet = wallet;
 	}
+
 	@JsonManagedReference
 	public List<PlaceOrder> getPlaceorder() {
 		return placeorder;
@@ -94,7 +93,8 @@ public class Buyer {
 	public void setPlaceorder(List<PlaceOrder> placeorder) {
 		this.placeorder = placeorder;
 	}
-@JsonManagedReference
+
+	@JsonManagedReference
 	public List<Cart> getCart() {
 		return cart;
 	}
@@ -123,5 +123,4 @@ public class Buyer {
 		this.cart = cart;
 	}
 
-	
 }

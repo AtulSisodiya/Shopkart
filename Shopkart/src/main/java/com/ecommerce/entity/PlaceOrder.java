@@ -19,24 +19,24 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="place_order")
+@Table(name = "place_order")
 public class PlaceOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long placeOrderId;
-	
+
 	private String address;
 	private String state;
 	private String city;
 	private String pincode;
 	private String orderStatus;
 	private long buyerId;
-	
+
 	@ManyToOne
 	Buyer buyerDetail;
-	
+
 	public PlaceOrder() {
-		
+
 	}
 
 	public PlaceOrder(Long placeOrderId, String address, String state, String city, String pincode, String orderStatus,
@@ -107,7 +107,8 @@ public class PlaceOrder {
 	public void setBuyerId(long buyerId) {
 		this.buyerId = buyerId;
 	}
-    @JsonBackReference
+
+	@JsonBackReference
 	public Buyer getBuyerDetail() {
 		return buyerDetail;
 	}
@@ -123,5 +124,4 @@ public class PlaceOrder {
 				+ ", buyerDetail=" + buyerDetail + "]";
 	}
 
-	
 }

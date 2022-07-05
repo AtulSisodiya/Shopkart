@@ -1,6 +1,5 @@
 package com.ecommerce.entity;
 
-
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -14,19 +13,21 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name="cart")
+@Table(name = "cart")
 public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cartId;
-	
+
 	@ManyToOne
 	Buyer buyer;
-	
-	@ManyToMany
-	List <Product> product;
 
-	Cart(){}
+	@ManyToMany
+	List<Product> product;
+
+	Cart() {
+	}
+
 	public Long getCartId() {
 		return cartId;
 	}
@@ -34,6 +35,7 @@ public class Cart {
 	public void setCartId(Long cartId) {
 		this.cartId = cartId;
 	}
+
 	@JsonBackReference
 	public Buyer getBuyer() {
 		return buyer;
@@ -62,8 +64,5 @@ public class Cart {
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", buyer=" + buyer + ", product=" + product + "]";
 	}
-	
-	
-	
-	
+
 }

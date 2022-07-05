@@ -27,10 +27,12 @@ public class Category {
 	private Long categoryId;
 	private String category;
 
-	@OneToMany(mappedBy="category")
+	@OneToMany(mappedBy = "category")
 	private List<Product> products;
 
-	Category(){}
+	Category() {
+	}
+
 	public Long getCategoryId() {
 		return categoryId;
 	}
@@ -46,7 +48,8 @@ public class Category {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-    @JsonManagedReference
+
+	@JsonManagedReference
 	public List<Product> getProducts() {
 		return products;
 	}
@@ -66,6 +69,5 @@ public class Category {
 		this.category = category;
 		this.products = products;
 	}
-	
-	
+
 }

@@ -27,65 +27,60 @@ public class Placeorder_control {
 
 	@Autowired
 	PlaceOrderRepo po;
-	
+
 	@Autowired
 	ProductRepo pr;
 	@Autowired
 	BuyerRepo br;
-	
+
 	@Autowired
 	WalletRepo wr;
-	
-	
+
 	@GetMapping("/")
-	public List<PlaceOrder> showdata(){
+	public List<PlaceOrder> showdata() {
 		return po.findAll();
 	}
-	
+
 	@PostMapping("/add")
-	public List<PlaceOrder> adddata(@RequestBody PlaceOrder ab){
+	public List<PlaceOrder> adddata(@RequestBody PlaceOrder ab) {
 		po.save(ab);
 		return po.findAll();
 	}
-	
+
 	@PutMapping("/update")
-	public List<PlaceOrder> updatedata(@RequestBody PlaceOrder ab){
+	public List<PlaceOrder> updatedata(@RequestBody PlaceOrder ab) {
 		po.save(ab);
 		return po.findAll();
 	}
-	
+
 	@GetMapping("/invoice")
-	public String getInvoice(@RequestParam Long buyerId,Integer walletId) {
-		int sum=0;
-		Wallet w=wr.findById(walletId).get();
-		Buyer b =br.findById(buyerId).get();
-		
-		
-		int walletb =(int) w.getBalance();
+	public String getInvoice(@RequestParam Long buyerId, Integer walletId) {
+		int sum = 0;
+		Wallet w = wr.findById(walletId).get();
+		Buyer b = br.findById(buyerId).get();
 
-		List<Cart> cr =b.getCart();
-		for(Cart c:cr) {
-		List<Product> pro=c.getProduct();
-		for(Product p:pro) {
-			
-		sum+=Integer.parseInt(p.getProductPrice());
+		int walletb = (int) w.getBalance();
+
+		List<Cart> cr = b.getCart();
+		for (Cart c : cr) {
+			List<Product> pro = c.getProduct();
+			for (Product p : pro) {
+				sum += Integer.parseInt(p.getProductPrice());
+			}
 		}
-		}
-		if(sum>walletb) {
+		if (sum > walletb) {
 			return "Wallet limit reached";
+		} else {
+			double temp = walletb - sum;
+			Wallet wnew = new Wallet();
+			wnew.setId(w.getId());
+			wnew.setBalance(temp);
+			wr.save(wnew);
+
+			return " Total Amount for your cart is: " + Integer.toString(sum) + " \n Wallet amount left: "
+					+ Integer.toString(walletb - sum);
 		}
-		else
-		{
-			double temp=walletb-sum;
-		Wallet wnew = new Wallet();
-		wnew.setId(w.getId());
-		wnew.setBalance(temp);
-		wr.save(wnew);	
-		return Integer.toString(sum)+"  Wallet amount left: "+ Integer.toString(walletb-sum);
-		}	
-		
-	}
-		
-	
+
 	}
 
+}

@@ -9,16 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import com.ecommerce.entity.Admin;
 import com.ecommerce.entity.Product;
+
 @Repository
-public interface ProductRepo extends JpaRepository<Product,Long>{
-	
-	
+public interface ProductRepo extends JpaRepository<Product, Long> {
+
 	Product findById(long productId);
-	
-	@Query("SELECT p FROM Product p WHERE p.productName LIKE %?1%"
-            + " OR p.brand LIKE %?1%")
-	
+
+	@Query("SELECT p FROM Product p WHERE p.productName LIKE %?1%" + " OR p.brand LIKE %?1%")
+
 	public List<Product> search(String keyword);
-	 
 
 }

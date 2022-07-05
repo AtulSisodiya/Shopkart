@@ -24,34 +24,31 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class Cart_control {
 	@Autowired
 	CartRepo cartrepo;
-	
+
 	@Autowired
 	AdminService as;
-	
-	
+
 	@PostMapping("/add")
-	public List<Cart> adddata(@RequestBody Cart ab){
+	public List<Cart> adddata(@RequestBody Cart ab) {
 		cartrepo.save(ab);
 		return cartrepo.findAll();
-		}
+	}
 
 	@GetMapping("/")
-	public List<Cart> showdata(){
+	public List<Cart> showdata() {
 		return cartrepo.findAll();
-		
-	}
-	
-	@PutMapping("/update")
-	public List<Cart> updatedata(@RequestBody Cart ab){
-		cartrepo.save(ab);
-		return cartrepo.findAll();
-		}
-	
-	@DeleteMapping("/delete/")
-	public List<Cart> deletepid(@RequestBody JsonNode rb){
-		return as.deldata( rb.get("cartId").asLong(), rb.get("productId").asLong());
-	}
-		
-		
+
 	}
 
+	@PutMapping("/update")
+	public List<Cart> updatedata(@RequestBody Cart ab) {
+		cartrepo.save(ab);
+		return cartrepo.findAll();
+	}
+
+	@DeleteMapping("/delete/")
+	public List<Cart> deletepid(@RequestBody JsonNode rb) {
+		return as.deldata(rb.get("cartId").asLong(), rb.get("productId").asLong());
+	}
+
+}

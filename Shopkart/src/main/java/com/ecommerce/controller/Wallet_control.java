@@ -19,20 +19,20 @@ public class Wallet_control {
 
 	@Autowired
 	WalletRepo wr;
-	
+
 	@GetMapping("/")
-	public List<Wallet> show(){
+	public List<Wallet> show() {
 		return wr.findAll();
 	}
-	
+
 	@PostMapping("/add")
-	public List<Wallet> add(@RequestBody Wallet ab){
+	public List<Wallet> add(@RequestBody Wallet ab) {
 		wr.save(ab);
 		return wr.findAll();
 	}
-	
+
 	@PutMapping("/update")
-	public List<Wallet> update(@RequestBody Wallet ab){
+	public List<Wallet> update(@RequestBody Wallet ab) {
 		wr.save(ab);
 		return wr.findAll();
 	}

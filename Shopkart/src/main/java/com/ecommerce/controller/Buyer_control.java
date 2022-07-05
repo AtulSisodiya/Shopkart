@@ -21,34 +21,35 @@ import com.ecommerce.repo.ProductRepo;
 public class Buyer_control {
 	@Autowired
 	BuyerRepo buyrepo;
-	
+
 	@Autowired
 	ProductRepo pr;
 
 	@PostMapping("/add")
-	public List<Buyer> adddata(@RequestBody Buyer ab){
+	public List<Buyer> adddata(@RequestBody Buyer ab) {
 		buyrepo.save(ab);
 		return buyrepo.findAll();
-		}
+	}
+
 	@PutMapping("/update")
-	public List<Buyer> updatedata(@RequestBody Buyer ab){
+	public List<Buyer> updatedata(@RequestBody Buyer ab) {
 		buyrepo.save(ab);
 		return buyrepo.findAll();
-		}
+	}
+
 	@GetMapping("/")
-	public List<Buyer> showdata(){
+	public List<Buyer> showdata() {
 		return buyrepo.findAll();
-		
+
 	}
-	
-	
-	//product search
+
+	// product search
 	@GetMapping("/product/search")
-	public List<Product> search(@RequestParam String Keyword){
-		
-		 List<Product> listsearch=pr.search(Keyword);
-		 
-		 return listsearch;
+	public List<Product> search(@RequestParam String Keyword) {
+
+		List<Product> listsearch = pr.search(Keyword);
+
+		return listsearch;
 	}
-	
+
 }

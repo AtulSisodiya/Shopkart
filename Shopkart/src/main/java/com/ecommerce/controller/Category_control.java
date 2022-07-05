@@ -21,26 +21,26 @@ public class Category_control {
 
 	@Autowired
 	CategoryRepo cr;
-	
+
 	@GetMapping("/")
-	public List<Category> showdata(){
+	public List<Category> showdata() {
 		return cr.findAll();
 	}
-	
+
 	@PostMapping("/add")
-	public List<Category> adddata(@RequestBody Category ab){
+	public List<Category> adddata(@RequestBody Category ab) {
 		cr.save(ab);
 		return cr.findAll();
-		}
-	
+	}
+
 	@PutMapping("/update")
-	public List<Category> updatedata(@RequestBody Category ab){
+	public List<Category> updatedata(@RequestBody Category ab) {
 		cr.save(ab);
 		return cr.findAll();
-		}
+	}
 
 	@DeleteMapping("/{id}")
-	public List<Category> deldata(@PathVariable Long id){
+	public List<Category> deldata(@PathVariable Long id) {
 		cr.deleteById(id);
 		return cr.findAll();
 	}
